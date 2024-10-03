@@ -39,23 +39,29 @@ def get_allmembers():
     return jsonify(response_body), 200
 
 
-@app.route('/members',methods=['POST'])
+@app.route('/member',methods=['POST'])
 def add_member():
     request_body = request.json
     jackson_family.add_member(request_body)
     return jsonify(jackson_family.get_all_members()), 200
 
 
-@app.route('/members/<int:position>', methods=['DELETE'])
+@app.route('/member/<int:position>', methods=['DELETE'])
 def delete_member(position):
     jackson_family.delete_member(position)
     return jsonify(jackson_family.get_all_members()), 200
 
 
-@app.route('/members/<int:position>', methods=['GET'])
+@app.route('/member/<int:position>', methods=['GET'])
 def get_member(position):
     member = jackson_family.get_member(position)
     return jsonify(member), 200
+
+@app.route('/member/<int:position>', methods=['PUT'])
+def edit_member(position):
+    request_body = request.json
+    jackson_family.edit_member(position,request_body)
+    return jsonify(jackson_family.get_all_members()), 200
 
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':

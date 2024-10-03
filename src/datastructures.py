@@ -25,8 +25,10 @@ class FamilyStructure:
         # fill this method and update the return
         if isinstance(member, list):
             for m in member:
+                #m[id]=self._generateId()
                 self._members.append(m)
         else:        
+            #member[id]=self._generateId()
             self._members.append(member)
         pass
 
@@ -37,8 +39,10 @@ class FamilyStructure:
 
     def get_member(self, id):
         return self._members[id]
-        pass
 
     # this method is done, it returns a list with all the family members
     def get_all_members(self):
         return self._members
+
+    def edit_member(self,position,newmember):
+        self._members[position]=newmember
